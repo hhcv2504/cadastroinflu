@@ -89,7 +89,10 @@ export default function SignupForm(props: {
           <Field label="Data de nascimento" error={errors.birthDate?.message}>
             <input
               type="date"
-              className={inputClass(errors.birthDate?.message)}
+              className={[
+                inputClass(errors.birthDate?.message),
+                "min-w-0 max-w-full appearance-none",
+              ].join(" ")}
               autoComplete="bday"
               {...register("birthDate")}
             />
@@ -103,7 +106,6 @@ export default function SignupForm(props: {
               <option value="na">Prefiro não informar</option>
               <option value="female">Feminino</option>
               <option value="male">Masculino</option>
-              <option value="nonbinary">Não-binário</option>
             </select>
           </Field>
 
@@ -161,7 +163,7 @@ function Field(props: {
   return (
     <div>
       <label className="text-sm font-medium">{props.label}</label>
-      <div className="mt-2">{props.children}</div>
+      <div className="mt-2 min-w-0">{props.children}</div>
       {props.error && (
         <p className="mt-1 text-xs text-red-200">{props.error}</p>
       )}
